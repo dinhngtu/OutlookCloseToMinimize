@@ -36,7 +36,7 @@ namespace OutlookCloseToMinimize {
         IntPtr MySubclassProc(IntPtr hWnd, uint uMsg, UIntPtr wParam, IntPtr lParam, UIntPtr uIdSubclass, UIntPtr dwRefData) {
             if (uMsg == WM_CLOSE) {
                 ShowWindow(hWnd, SW_MINIMIZE);
-                return IntPtr.Zero;
+                return new IntPtr(1);
             }
             return DefSubclassProc(hWnd, uMsg, wParam, lParam);
         }
