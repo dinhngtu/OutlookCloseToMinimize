@@ -31,6 +31,7 @@ namespace OutlookCloseToMinimize {
         const int SW_MINIMIZE = 6;
 
         IntPtr _hWnd = IntPtr.Zero, _scProc = IntPtr.Zero;
+        SubclassProc _scDelegate;
         GCHandle _gch;
 
         IntPtr MySubclassProc(IntPtr hWnd, uint uMsg, UIntPtr wParam, IntPtr lParam, UIntPtr uIdSubclass, UIntPtr dwRefData) {
@@ -47,12 +48,15 @@ namespace OutlookCloseToMinimize {
             // before our module is unloaded to avoid crashes
             ((Outlook.ApplicationEvents_11_Event)Application).Quit += ThisAddIn_Quit;
             if (((IOleWindow)Application.ActiveExplorer()).GetWindow(out _hWnd) == S_OK && _hWnd != IntPtr.Zero) {
-                _gch = GCHandle.Alloc(this);
-                _scProc = Marshal.GetFunctionPointerForDelegate((SubclassProc)MySubclassProc);
+                _scDelegate = new SubclassProc(MySubclassProc);
+                _gch = GCHandle.Alloc(_scProc);
+                _scProc = Marshal.GetFunctionPointerForDelegate(_scDelegate);
                 if (SetWindowSubclass(_hWnd, _scProc, UIntPtr.Zero, UIntPtr.Zero)) {
                     return;
                 }
+                _scProc = IntPtr.Zero;
                 _gch.Free();
+                _scDelegate = null;
             }
             _hWnd = IntPtr.Zero;
         }
@@ -60,8 +64,10 @@ namespace OutlookCloseToMinimize {
         private void ThisAddIn_Quit() {
             if (_hWnd != IntPtr.Zero) {
                 RemoveWindowSubclass(_hWnd, _scProc, UIntPtr.Zero);
-                _hWnd = IntPtr.Zero;
+                _scProc = IntPtr.Zero;
                 _gch.Free();
+                _scDelegate = null;
+                _hWnd = IntPtr.Zero;
             }
         }
 
