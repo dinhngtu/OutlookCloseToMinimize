@@ -23,12 +23,15 @@ namespace OutlookCloseToMinimize {
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool PostMessage(IntPtr hWnd, uint uMsg, UIntPtr wParam, IntPtr lParam);
 
         delegate IntPtr SubclassProc(IntPtr hWnd, uint uMsg, UIntPtr wParam, IntPtr lParam, UIntPtr uIdSubclass, UIntPtr dwRefData);
 
         const int S_OK = 0;
         const uint WM_CLOSE = 0x0010;
-        const uint WM_ENDSESSION = 0x0016;
+        const uint WM_QUERYENDSESSION = 0x0011;
         const int SW_MINIMIZE = 6;
 
         IntPtr _hWnd = IntPtr.Zero, _scProc = IntPtr.Zero;
@@ -38,8 +41,9 @@ namespace OutlookCloseToMinimize {
             if (uMsg == WM_CLOSE) {
                 ShowWindow(hWnd, SW_MINIMIZE);
                 return new IntPtr(1);
-            } else if (uMsg == WM_ENDSESSION && wParam != UIntPtr.Zero) {
+            } else if (uMsg == WM_QUERYENDSESSION) {
                 ThisAddIn_Quit();
+                PostMessage(hWnd, WM_CLOSE, UIntPtr.Zero, IntPtr.Zero);
             }
             return DefSubclassProc(hWnd, uMsg, wParam, lParam);
         }
