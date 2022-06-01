@@ -9,6 +9,11 @@ The addin works best when the "Hide when minimized" option is enabled (by right-
 
 ![image](https://user-images.githubusercontent.com/1257909/134686359-b6df9c6f-364e-4c40-9d9a-ec67cb0fa3bd.png)
 
+Addin keeps disabling itself
+----------------------------
+
+Outlook disables addins that cause it to start slowly. If you encounter this problem, apply the included `forceload.reg` Registry file.
+
 If Outlook crashes
 ------------------
 
