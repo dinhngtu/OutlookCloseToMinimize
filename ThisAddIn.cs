@@ -28,6 +28,7 @@ namespace OutlookCloseToMinimize {
 
         const int S_OK = 0;
         const uint WM_CLOSE = 0x0010;
+        const uint WM_ENDSESSION = 0x0016;
         const int SW_MINIMIZE = 6;
 
         IntPtr _hWnd = IntPtr.Zero, _scProc = IntPtr.Zero;
@@ -37,6 +38,8 @@ namespace OutlookCloseToMinimize {
             if (uMsg == WM_CLOSE) {
                 ShowWindow(hWnd, SW_MINIMIZE);
                 return new IntPtr(1);
+            } else if (uMsg == WM_ENDSESSION && wParam != UIntPtr.Zero) {
+                ThisAddIn_Quit();
             }
             return DefSubclassProc(hWnd, uMsg, wParam, lParam);
         }
