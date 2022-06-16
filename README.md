@@ -3,7 +3,13 @@ Installation
 
 To use the addin, you'll first need to install the [VSTO runtime](https://www.microsoft.com/en-us/download/details.aspx?id=56961).
 Afterwards, extract the zip content to an appropriate directory (not in a temporary directory, since the addin runs in place).
-Simply double-click the .vsto file to install.
+
+Next, you'll need to remove the "mark-of-the-Web" which blocks the addin's installation.
+Open a PowerShell window in the downloaded file's folder (Shift-right click, then choose "Open PowerShell window here"), then run the following command:
+
+```Unblock-File *```
+
+Finally, simply double-click the .vsto file to install.
 
 The addin works best when the "Hide when minimized" option is enabled (by right-clicking Outlook's tray icon):
 
@@ -18,6 +24,11 @@ If Outlook crashes
 ------------------
 
 If Outlook crashes, simply run `outlook.exe /safe` and remove the addin manually from Options - Add-ins.
+
+Known issues
+------------
+
+- Outlook fails to close when logging out or restarting on Windows 11
 
 Notes
 -----
