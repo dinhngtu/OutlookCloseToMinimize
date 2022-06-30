@@ -25,11 +25,6 @@ If Outlook crashes
 
 If Outlook crashes, simply run `outlook.exe /safe` and remove the addin manually from Options - Add-ins.
 
-Known issues
-------------
-
-- Outlook fails to close when logging out or restarting on Windows 11
-
 Notes
 -----
 
