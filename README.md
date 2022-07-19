@@ -28,4 +28,6 @@ If Outlook crashes, simply run `outlook.exe /safe` and remove the addin manually
 Notes
 -----
 
+Licensed under GPL version 3.
+
 I tested the addin with Outlook 365 and .NET 4.7.2, but in theory it should work with older Outlook versions with no problem.
