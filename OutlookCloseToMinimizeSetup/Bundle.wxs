@@ -2,8 +2,8 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:bal="http://schemas.microsoft.com/wix/BalExtension" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
   <Bundle
     Name="OutlookCloseToMinimize"
-    Version="1.4.0.0"
-    Manufacturer="Tu Dinh"
+    Version="!(bind.packageVersion.OutlookCloseToMinimizeMsi)"
+    Manufacturer="!(bind.packageManufacturer.OutlookCloseToMinimizeMsi)"
     UpgradeCode="8b5fd62b-d107-4ea1-9e0f-4db0dceecc2b"
     DisableModify="yes"
     AboutUrl="https://github.com/dinhngtu/OutlookCloseToMinimize">
@@ -16,7 +16,7 @@
     <Chain>
       <MsiPackage SourceFile="vstor\vstor40_x64.msi" Permanent="yes" />
       <!--<ExePackage SourceFile="vstor_redist.exe" InstallCommand="/q /norestart" Permanent="yes" DetectCondition="VSTO_VERSION &gt;= 10.0.0.0" />-->
-      <MsiPackage SourceFile="$(var.OutlookCloseToMinimizeMsi.TargetPath)" />
+      <MsiPackage SourceFile="$(var.OutlookCloseToMinimizeMsi.TargetPath)" Id="OutlookCloseToMinimizeMsi" />
     </Chain>
   </Bundle>
 </Wix>
