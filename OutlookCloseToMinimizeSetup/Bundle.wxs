@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:bal="http://schemas.microsoft.com/wix/BalExtension" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Bundle
+    Name="OutlookCloseToMinimize"
+    Version="1.4.0.0"
+    Manufacturer="Tu Dinh"
+    UpgradeCode="8b5fd62b-d107-4ea1-9e0f-4db0dceecc2b"
+    DisableModify="yes"
+    AboutUrl="https://github.com/dinhngtu/OutlookCloseToMinimize">
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.HyperlinkLicense">
+      <bal:WixStandardBootstrapperApplication LicenseUrl="https://github.com/dinhngtu/OutlookCloseToMinimize/blob/master/LICENSE.txt" SuppressOptionsUI="yes" />
+    </BootstrapperApplicationRef>
+
+    <!--<util:ProductSearch UpgradeCode="{BDF58076-CD95-3505-8AE8-6F49CD1578BC}" Variable="VSTO_VERSION" />-->
+
+    <Chain>
+      <MsiPackage SourceFile="vstor\vstor40_x64.msi" Permanent="yes" />
+      <!--<ExePackage SourceFile="vstor_redist.exe" InstallCommand="/q /norestart" Permanent="yes" DetectCondition="VSTO_VERSION &gt;= 10.0.0.0" />-->
+      <MsiPackage SourceFile="$(var.OutlookCloseToMinimizeMsi.TargetPath)" />
+    </Chain>
+  </Bundle>
+</Wix>

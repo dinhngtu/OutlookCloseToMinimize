@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product
+    Id="*"
+    Name="OutlookCloseToMinimize"
+    Language="1033"
+    Version="1.4.0.0"
+    Manufacturer="Tu Dinh"
+    UpgradeCode="460c71af-429b-4ca9-982d-5e7aca6323d6">
+    <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Property Id="ARPNOMODIFY" Value="1" Secure="yes" />
+    <!--
+    <Property Id="ALLUSERS" Value="2" Secure="yes" />
+    <Property Id="MSIINSTALLPERUSER" Value="1" Secure="yes" />
+    -->
+
+    <Feature Id="ProductFeature" Title="OutlookCloseToMinimize" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="INSTALLFOLDER" Name="OutlookCloseToMinimize" />
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER" Source="$(var.OutlookCloseToMinimize.TargetDir)">
+      <Component>
+        <File Name="OutlookCloseToMinimize.dll" />
+      </Component>
+      <Component>
+        <File Name="OutlookCloseToMinimize.dll.manifest" />
+      </Component>
+      <Component>
+        <File Name="OutlookCloseToMinimize.vsto" />
+      </Component>
+      <Component>
+        <File Name="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" />
+      </Component>
+      <Component>
+        <File Name="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" />
+      </Component>
+      <Component>
+        <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\Office\Outlook\Addins\OutlookCloseToMinimize">
+          <RegistryValue Type="string" Name="Description" Value="OutlookCloseToMinimize" />
+          <RegistryValue Type="string" Name="FriendlyName" Value="OutlookCloseToMinimize" />
+          <RegistryValue Type="string" Name="Manifest" Value="file:///[INSTALLFOLDER]OutlookCloseToMinimize.vsto|vstolocal" />
+          <RegistryValue Type="integer" Name="LoadBehavior" Value="3" />
+        </RegistryKey>
+      </Component>
+      <Component>
+        <Condition>ALLUSERS=1</Condition>
+        <RegistryValue Type="string" Root="HKCU" Key="Software\Policies\Microsoft\Office\16.0\Outlook\Resiliency\AddinList" Name="OutlookCloseToMinimize" Value="1" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

@@ -213,7 +213,7 @@
     <ManifestKeyFile>OutlookCloseToMinimize_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>B1A58A852052FFB8EFFD1B3FA1B02BFC6AC38A8A</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>57790B38ED1DCC54FE9462FCB72ACD2552AE477A</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

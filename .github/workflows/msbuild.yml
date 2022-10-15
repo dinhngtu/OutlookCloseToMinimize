@@ -12,10 +12,10 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Add MSBuild to PATH
-      uses: microsoft/setup-msbuild@v1.0.2
+      uses: microsoft/setup-msbuild@v1
 
     - name: Restore NuGet packages
       working-directory: ${{env.GITHUB_WORKSPACE}}
@@ -36,6 +36,6 @@ jobs:
       run: Remove-Item -path ${{env.SOLUTION_FILE_PATH}}/${{env.PFX_FILE_NAME}}
       
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
-        path: ${{env.SOLUTION_FILE_PATH}}/bin/${{env.BUILD_CONFIGURATION}}/**
+        path: ${{env.SOLUTION_FILE_PATH}}/OutlookCloseToMinimizeSetup/bin/${{env.BUILD_CONFIGURATION}}/**
