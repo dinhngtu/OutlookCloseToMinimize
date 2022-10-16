@@ -20,6 +20,7 @@
 
     <Feature Id="ProductFeature" Title="OutlookCloseToMinimize" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="KeepEnabled" />
     </Feature>
   </Product>
 
@@ -52,13 +53,23 @@
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\Office\Outlook\Addins\OutlookCloseToMinimize">
           <RegistryValue Type="string" Name="Description" Value="OutlookCloseToMinimize" />
           <RegistryValue Type="string" Name="FriendlyName" Value="OutlookCloseToMinimize" />
-          <RegistryValue Type="string" Name="Manifest" Value="file:///[INSTALLFOLDER]OutlookCloseToMinimize.vsto|vstolocal" />
+          <RegistryValue Type="string" Name="Manifest" Value="file:///[#OutlookCloseToMinimize.vsto]|vstolocal" />
           <RegistryValue Type="integer" Name="LoadBehavior" Value="3" />
         </RegistryKey>
       </Component>
+    </ComponentGroup>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="KeepEnabled" Directory="INSTALLFOLDER">
+      <!--
       <Component>
         <Condition>ALLUSERS=1</Condition>
         <RegistryValue Type="string" Root="HKCU" Key="Software\Policies\Microsoft\Office\16.0\Outlook\Resiliency\AddinList" Name="OutlookCloseToMinimize" Value="1" />
+      </Component>
+      -->
+      <Component>
+        <RegistryValue Type="integer" Root="HKCU" Key="SOFTWARE\Microsoft\Office\16.0\Outlook\Resiliency\DoNotDisableAddinList" Name="OutlookCloseToMinimize" Value="1" />
       </Component>
     </ComponentGroup>
   </Fragment>
