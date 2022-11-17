@@ -1,6 +1,8 @@
 Installation
 ------------
 
+You'll first need to install the [VSTO runtime](https://www.microsoft.com/en-us/download/details.aspx?id=56961).
+
 **Remove all existing versions of OutlookCloseToMinimize**.
 Then double-click `OutlookCloseToMinimize.msi`.
 
