@@ -7,16 +7,12 @@
     Version="!(bind.fileVersion.OutlookCloseToMinimize.dll)"
     Manufacturer="Tu Dinh"
     UpgradeCode="460c71af-429b-4ca9-982d-5e7aca6323d6">
-    <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" />
+    <Package InstallerVersion="500" Compressed="yes" InstallScope="perUser" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <MediaTemplate EmbedCab="yes" />
 
     <Property Id="ARPNOMODIFY" Value="1" Secure="yes" />
-    <!--
-    <Property Id="ALLUSERS" Value="2" Secure="yes" />
-    <Property Id="MSIINSTALLPERUSER" Value="1" Secure="yes" />
-    -->
 
     <Feature Id="ProductFeature" Title="OutlookCloseToMinimize" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
