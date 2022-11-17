@@ -38,4 +38,4 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
       with:
-        path: ${{env.SOLUTION_FILE_PATH}}/OutlookCloseToMinimizeSetup/bin/x64/${{env.BUILD_CONFIGURATION}}/**
+        path: ${{env.SOLUTION_FILE_PATH}}/OutlookCloseToMinimizeMsi/bin/x64/${{env.BUILD_CONFIGURATION}}/**
