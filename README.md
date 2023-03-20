@@ -18,7 +18,7 @@ If Outlook crashes, simply run `outlook.exe /safe` and remove the addin manually
 If Outlook disables the addin by itself
 ---------------------------------------
 
-Simply apply the included Registry file: [forceload.reg](https://github.com/dinhngtu/OutlookCloseToMinimize/blob/master/forceload.reg)
+Apply the included Registry file: [forceload.reg](https://github.com/dinhngtu/OutlookCloseToMinimize/blob/master/forceload.reg) (right-click "Raw" - Save link as...)
 
 Notes
 -----
